@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  proxy:
+    image: golang:1.19.4-alpine3.17
+    volumes:
+      - .:/app
+      - ./shared:/shared
+    ports:
+      - 443:443
+    entrypoint: go run /app/main.go
+    environment:
+      - ORIGIN_URL=http://webpage
+  webpage:
+    image: nginx:alpine
+    ports:
+      - 11111:80
