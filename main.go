@@ -31,13 +31,10 @@ func main() {
 
 func getCert(info *tls.ClientHelloInfo) (*tls.Certificate, error) {
 
-	// load key pair from file
 	cer, err := tls.LoadX509KeyPair(
 		"/shared/ssl/"+info.ServerName+".pem",
 		"/shared/ssl/"+info.ServerName+"-key.pem",
 	)
-
-	// load key pair from redis
 
 	if err != nil {
 		return nil, err
